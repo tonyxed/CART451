@@ -16,7 +16,7 @@ async function run(){
         // const query2 = await movieReviews.countDocuments(); //counts the number of movies in the database
         // console.log('Total movies inthe database:');
         // console.log(query2);
-        // const query3 = await movieReviews.find({}).sort({ field: 1 }).toArray(); // find movies sorted by a specific field
+        // const query3 = await movieReviews.find({'Votes': {$gte:1327069}}).toArray(); // find movies sorted by a specific field
         // console.log('Documents:');
         // console.log(query3);
         // const query4 = await movieReviews.find({'MetaScore':{$gt:70}}).toArray(); // finds all movies with a metascore of greater than 70
