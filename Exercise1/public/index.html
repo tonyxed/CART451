@@ -16,7 +16,6 @@
     <button id="searchMetascoreButton">Search by Metascore</button>
   </div>
   <div id="searchResults">
-    <!-- Search results will be displayed here -->
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -47,7 +46,7 @@
           const response = await fetch(`http://localhost:4000/searchMetascore?metascore=${minMetascore}`);
           const data = await response.json();
 
-          displaySearchResults(data);
+          displaySearchResults1(data);
         } catch (error) {
           handleError(error);
         }
@@ -60,6 +59,16 @@
         } else {
           data.forEach((result, index) => {
             searchResults.innerHTML += `${index + 1}: Movie Name: ${result['Movie Name']}, Votes: ${result.Votes}<br>`;
+          });
+        }
+      }
+      function displaySearchResults1(data) {
+        searchResults.innerHTML = "Search Results:<br>";
+        if (data.length === 0) {
+          searchResults.innerHTML += "No results found.";
+        } else {
+          data.forEach((result, index) => {
+            searchResults.innerHTML += `${index + 1}: Movie Name: ${result['Movie Name']}, MetaScore: ${result.MetaScore}<br>`;
           });
         }
       }

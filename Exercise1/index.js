@@ -71,7 +71,7 @@ app.get('/searchMetascore', async (req, res) => {
         const db = client.db(databaseName);
         const movieReviews = db.collection("Movies");
 
-        const query = await movieReviews.find({ 'MetaScore': { $gte: minMetascore } }).toArray(); //finds all movies inside the database with a metascore sent by the user
+        const query = await movieReviews.find({ 'MetaScore': { $gte: minMetascore } }).toArray(); //finds all movies inside the database with a metascore higher than what the user searched
         console.log('Server response:', query);
         res.json(query);
     } catch (err) {
