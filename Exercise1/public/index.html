@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Search</title>
+</head>
+<body>
+  <h1>Movie Search</h1>
+  <div>
+    <label for="searchVotesInput">Search Movies with Votes:</label>
+    <input type="number" id="searchVotesInput" placeholder="Enter minimum votes">
+    <button id="searchVotesButton">Search by Votes</button>
+  </div>
+  <div>
+    <label for="searchMetascoreInput">Search Movies with Metascore Greater Than:</label>
+    <input type="number" id="searchMetascoreInput" placeholder="Enter minimum Metascore">
+    <button id="searchMetascoreButton">Search by Metascore</button>
+  </div>
+  <div id="searchResults">
+    <!-- Search results will be displayed here -->
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchVotesButton = document.getElementById("searchVotesButton");
+      const searchVotesInput = document.getElementById("searchVotesInput");
+      const searchMetascoreButton = document.getElementById("searchMetascoreButton");
+      const searchMetascoreInput = document.getElementById("searchMetascoreInput");
+      const searchResults = document.getElementById("searchResults");
+
+      searchVotesButton.addEventListener("click", async function () {
+        const minVotes = searchVotesInput.value;
+
+        try {
+          const response = await fetch(`http://localhost:4000/search?votes=${minVotes}`);
+          const data = await response.json();
+
+          displaySearchResults(data);
+        } catch (error) {
+          handleError(error);
+        }
+      });
+
+      //metascore
+      searchMetascoreButton.addEventListener("click", async function () {
+        const minMetascore = searchMetascoreInput.value;
+
+        try {
+          const response = await fetch(`http://localhost:4000/searchMetascore?metascore=${minMetascore}`);
+          const data = await response.json();
+
+          displaySearchResults(data);
+        } catch (error) {
+          handleError(error);
+        }
+      });
+      //votes
+      function displaySearchResults(data) {
+        searchResults.innerHTML = "Search Results:<br>";
+        if (data.length === 0) {
+          searchResults.innerHTML += "No results found.";
+        } else {
+          data.forEach((result, index) => {
+            searchResults.innerHTML += `${index + 1}: Movie Name: ${result['Movie Name']}, Votes: ${result.Votes}<br>`;
+          });
+        }
+      }
+
+      function handleError(error) {
+        console.error(error);
+        searchResults.innerHTML = "An error occurred.";
+      }
+    });
+  </script>
+</body>
+</html>
+
+
