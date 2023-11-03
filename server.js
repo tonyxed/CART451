@@ -3,13 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const fs = require('fs');
+const path = require('path');
 
+app.use('/css', express.static(path.join(__dirname, 'css'), { 'extensions': ['css'] }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
-    res.sendFile(__dirname + '/main.html');
 });
 
 app.post('/submit', (req, res) => {
@@ -24,18 +25,28 @@ app.post('/submit', (req, res) => {
         question3: answer3,
     };
 
+    const answersJSON = JSON.stringify(answers, null, 2);
 
-    const answersJSON = JSON.stringify(answers);
+    // Specify the path to the directory where you want to save the JSON file.
+    const directoryPath = path.join(__dirname, 'data'); // 'data' is the directory name
+    const filename = 'user_answers.json'; // You can change the filename if needed
+    const filePath = path.join(directoryPath, filename);
 
-    // Save the answers to a JSON file.
-    fs.writeFileSync('answers.json', answersJSON);
+    // Create the directory if it doesn't exist.
+    if (!fs.existsSync(directoryPath)) {
+        fs.mkdirSync(directoryPath);
+    }
 
-    // Send the confirmation message as a response.
-    res.send('Answers submitted and saved successfully.');
-
+    // Save the answers to a JSON file in the specified directory and handle errors.
+    try {
+        fs.writeFileSync(filePath, answersJSON);
+        res.send('Answers submitted and saved to user_answers.json on the server successfully.');
+    } catch (error) {
+        console.error('Error saving data:', error);
+        res.status(500).send('Error saving data to user_answers.json.');
+    }
 });
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
