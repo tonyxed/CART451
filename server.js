@@ -17,12 +17,16 @@ app.post('/submit', (req, res) => {
     const answer1 = req.body.question1;
     const answer2 = req.body.question2;
     const answer3 = req.body.question3;
+    const answer4 = req.body.question4;
+    const answer5 = req.body.question5;
 
     // Create an object with the answers.
     const answers = {
         question1: answer1,
         question2: answer2,
         question3: answer3,
+        question4: answer4,
+        question5: answer5,
     };
 
     const answersJSON = JSON.stringify(answers, null, 2);
@@ -40,7 +44,7 @@ app.post('/submit', (req, res) => {
     // Save the answers to a JSON file in the specified directory and handle errors.
     try {
         fs.writeFileSync(filePath, answersJSON);
-        res.send('Answers submitted and saved to user_answers.json on the server successfully.');
+        res.send('Answers submitted on the server successfully.');
     } catch (error) {
         console.error('Error saving data:', error);
         res.status(500).send('Error saving data to user_answers.json.');
@@ -50,3 +54,6 @@ app.post('/submit', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+//when user enters their answers, place their answers into a group, then place them in a group that corresponds to their answers
