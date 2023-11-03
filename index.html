@@ -25,11 +25,23 @@
 
             <button type="submit">Submit</button>
         </form>
+        <p id="confirmationMessage"></p> 
     </main>
 
     <footer>
         <p>&copy; Looking for a Way Out!</p>
     </footer>
+    <script>
+
+        const confirmationMessage = document.getElementById('confirmationMessage');
+    
+        // Update the message when the form is submitted
+        const form = document.getElementById('questionForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            confirmationMessage.textContent = 'Answers submitted and saved successfully.';
+        });
+    </script>
 </body>
 </html>
 

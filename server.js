@@ -5,10 +5,11 @@ const port = 3000;
 const fs = require('fs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); 
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/main.html');
 });
 
 app.post('/submit', (req, res) => {
@@ -23,15 +24,18 @@ app.post('/submit', (req, res) => {
         question3: answer3,
     };
 
-    // Convert the answers object to a JSON string.
+
     const answersJSON = JSON.stringify(answers);
 
     // Save the answers to a JSON file.
     fs.writeFileSync('answers.json', answersJSON);
 
+    // Send the confirmation message as a response.
     res.send('Answers submitted and saved successfully.');
+
 });
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
