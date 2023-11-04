@@ -29,34 +29,42 @@ app.post('/submit', (req, res) => {
         question5: answer5,
     };
 
-    // Check if the answer to question 4 is higher than 150 or less than or equal to 150.
-    if (answer4 > 150) {
-        answers.group = 3; // Assign the user to Group 3.
+    
+    if (answer4 > 150 && answer5 === 'yes') {
+        answers.group = 1; 
+    } else if (answer4 <= 150 && answer5 === 'yes') {
+        answers.group = 2; 
+    } else if (answer4 > 150 && answer5 === 'no') {
+        answers.group = 3; 
     } else {
-        answers.group = 2; // Assign the user to Group 2 for answers less than or equal to 150.
+        answers.group = 4; 
     }
 
     const answersJSON = JSON.stringify(answers, null, 2);
 
-    // Specify the path to the directory where you want to save the JSON file.
-    const directoryPath = path.join(__dirname, 'data'); // 'data' is the directory name
-    const timestamp = Date.now(); // Generate a unique timestamp
-    const filename = `user_answers_${timestamp}.json`; // Include the timestamp in the filename
+
+    const directoryPath = path.join(__dirname, 'data'); 
+    const timestamp = Date.now(); 
+    const filename = `user_answers_${timestamp}.json`; 
     const filePath = path.join(directoryPath, filename);
 
     if (!fs.existsSync(directoryPath)) {
         fs.mkdirSync(directoryPath);
     }
 
-    // save the answers to a JSON file 
+    // Save the answers to a JSON file
     try {
         fs.writeFileSync(filePath, answersJSON);
 
-        let responseMessage = 'answers submitted.';
-        if (answers.group === 3) {
-            responseMessage += ' You have been placed in Group 3.';
+        let responseMessage = 'Answers submitted.';
+        if (answers.group === 1) {
+            responseMessage += ' You have been placed in Group 1.';
         } else if (answers.group === 2) {
             responseMessage += ' You have been placed in Group 2.';
+        } else if (answers.group === 3) {
+            responseMessage += ' You have been placed in Group 3.';
+        } else {
+            responseMessage += ' You have been placed in Group 4.';
         }
 
         res.send(responseMessage);
