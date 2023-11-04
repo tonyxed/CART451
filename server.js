@@ -4,6 +4,8 @@ const app = express();
 const port = 3000;
 const fs = require('fs');
 const path = require('path');
+const templatePath = path.join(__dirname, 'response.html');
+const template = fs.readFileSync(templatePath, 'utf8');
 
 app.use('/css', express.static(path.join(__dirname, 'css'), { 'extensions': ['css'] }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +22,7 @@ app.post('/submit', (req, res) => {
     const answer4 = req.body.question4;
     const answer5 = req.body.question5;
 
-    // Create an object with the answers.
+   
     const answers = {
         question1: answer1,
         question2: answer2,
@@ -29,7 +31,6 @@ app.post('/submit', (req, res) => {
         question5: answer5,
     };
 
-    
     if (answer4 > 150 && answer5 === 'yes') {
         answers.group = 1; 
     } else if (answer4 <= 150 && answer5 === 'yes') {
@@ -41,7 +42,6 @@ app.post('/submit', (req, res) => {
     }
 
     const answersJSON = JSON.stringify(answers, null, 2);
-
 
     const directoryPath = path.join(__dirname, 'data'); 
     const timestamp = Date.now(); 
@@ -56,18 +56,17 @@ app.post('/submit', (req, res) => {
     try {
         fs.writeFileSync(filePath, answersJSON);
 
-        let responseMessage = 'Answers submitted.';
-        if (answers.group === 1) {
-            responseMessage += ' You have been placed in Group 1.';
-        } else if (answers.group === 2) {
-            responseMessage += ' You have been placed in Group 2.';
-        } else if (answers.group === 3) {
-            responseMessage += ' You have been placed in Group 3.';
-        } else {
-            responseMessage += ' You have been placed in Group 4.';
-        }
+        // render the "response.html" template with user answers
+        const renderedHtml = template
+            .replace('{{answer1}}', answers.question1)
+            .replace('{{answer2}}', answers.question2)
+            .replace('{{answer3}}', answers.question3)
+            .replace('{{answer4}}', answers.question4)
+            .replace('{{answer5}}', answers.question5)
+            .replace('{{group}}', answers.group);
 
-        res.send(responseMessage);
+        res.send(renderedHtml);
+
     } catch (error) {
         console.error('Error saving data:', error);
         res.status(500).send('Error saving data to user_answers.json.');
@@ -78,6 +77,6 @@ app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
+//https://stackoverflow.com/questions/70407169/saving-user-input-in-json-file
+//https://stackoverflow.com/questions/72574889/how-do-i-save-the-inputs-of-an-html-form-into-a-json-file-with-javascript
 
-//when user enters their answers, place their answers into a group, then place them in a group that corresponds to their answers
-//then displays them onto an HTML page

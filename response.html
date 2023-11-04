@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission Result</title>
+</head>
+<body>
+    <h1>Submission Result</h1>
+    <p>What you entered:</p>
+    <ul>
+        <li>Question 1: <span id="answer1"></span></li>
+        <li>Question 2: <span id="answer2"></span></li>
+        <li>Question 3: <span id="answer3"></span></li>
+        <li>Question 4: <span id="answer4"></span></li>
+        <li>Question 5: <span id="answer5"></span></li>
+        <li>Group: <span id="group"></span></li>
+    </ul>
+    <script>
+        
+        const answer1Element = document.getElementById("answer1");
+        const answer2Element = document.getElementById("answer2");
+        const answer3Element = document.getElementById("answer3");
+        const answer4Element = document.getElementById("answer4");
+        const answer5Element = document.getElementById("answer5");
+        const groupElement = document.getElementById("group");
+
+        
+        answer1Element.textContent = '{{answer1}}';
+        answer2Element.textContent = '{{answer2}}'; 
+        answer3Element.textContent = '{{answer3}}';
+        answer4Element.textContent = '{{answer4}}'; 
+        answer5Element.textContent = '{{answer5}}'; 
+        groupElement.textContent = '{{group}}'; 
+    </script>
+</body>
+</html>
