@@ -33,15 +33,15 @@ app.post('/submit', (req, res) => {
 
     // Specify the path to the directory where you want to save the JSON file.
     const directoryPath = path.join(__dirname, 'data'); // 'data' is the directory name
-    const filename = 'user_answers.json'; // You can change the filename if needed
+    const filename = 'user_answers.json'; 
     const filePath = path.join(directoryPath, filename);
 
-    // Create the directory if it doesn't exist.
+    // create the directory if it doesn't exist
     if (!fs.existsSync(directoryPath)) {
         fs.mkdirSync(directoryPath);
     }
 
-    // Save the answers to a JSON file in the specified directory and handle errors.
+    // save the answers to a JSON file in the specified directory and handle errors
     try {
         fs.writeFileSync(filePath, answersJSON);
         res.send('Answers submitted on the server successfully.');
@@ -57,3 +57,4 @@ app.listen(port, () => {
 
 
 //when user enters their answers, place their answers into a group, then place them in a group that corresponds to their answers
+//then displays them onto an HTML page
