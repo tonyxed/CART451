@@ -7,11 +7,12 @@
     <h1>Submission Result</h1>
     <p>What you entered:</p>
     <ul>
-        <li>How old are you?: <span id="answer1"></span></li>
-        <li>Are you an active person?: <span id="answer2"></span></li>
-        <li>Would you consider yourself to be fairly disciplined?: <span id="answer3"></span></li>
-        <li>Enter your weight: <span id="answer4"></span></li>
-        <li>Do you currently do any form of exercise?: <span id="answer5"></span></li>
+        <li>What is your name?: <span id="answer1"></span></li>
+        <li>How old are you?: <span id="answer2"></span></li>
+        <li>Are you an active person?: <span id="answer3"></span></li>
+        <li>Would you consider yourself to be fairly disciplined?: <span id="answer4"></span></li>
+        <li>Enter your weight: <span id="answer5"></span></li>
+        <li>Do you currently do any form of exercise?: <span id="answer6"></span></li>
         <li>You have been placed in group: <span id="group"></span></li>
     </ul>
     <script>
@@ -21,6 +22,7 @@
         const answer3Element = document.getElementById("answer3");
         const answer4Element = document.getElementById("answer4");
         const answer5Element = document.getElementById("answer5");
+        const answer6Element = document.getElementById("answer6");
         const groupElement = document.getElementById("group");
 
         
@@ -29,6 +31,7 @@
         answer3Element.textContent = '{{answer3}}';
         answer4Element.textContent = '{{answer4}}'; 
         answer5Element.textContent = '{{answer5}}'; 
+        answer6Element.textContent = '{{answer6}}'; 
         groupElement.textContent = '{{group}}'; 
     </script>
 </body>
