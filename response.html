@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="response.css">
     <title>Submission Result</title>
+    <style>
+        
+        .button-container {
+            text-align: center;
+        }
+
+        /* Style the button */
+        #submitButton {
+            background-color: #007BFF; 
+            color: #ffffff; 
+            padding: 10px 20px;
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+
+        /* Hover effect on the button */
+        #submitButton:hover {
+            background-color: #0056b3; 
+        }
+    </style>
 </head>
 <body>
     <h1>Submission Result</h1>
-    <p>What you entered:</p>
+    <p>YOUR ANSWERS HAVE BEEN SAVED TO THE SERVER!</p>
     <ul>
         <li>What is your name?: <span id="answer1"></span></li>
         <li>How old are you?: <span id="answer2"></span></li>
@@ -15,8 +38,10 @@
         <li>Do you currently do any form of exercise?: <span id="answer6"></span></li>
         <li>You have been placed in group: <span id="group"></span></li>
     </ul>
+    <div class="button-container">
+        <button id="submitButton">Find out what's next for me!</button>
+    </div>
     <script>
-        
         const answer1Element = document.getElementById("answer1");
         const answer2Element = document.getElementById("answer2");
         const answer3Element = document.getElementById("answer3");
@@ -25,14 +50,18 @@
         const answer6Element = document.getElementById("answer6");
         const groupElement = document.getElementById("group");
 
-        
         answer1Element.textContent = '{{answer1}}';
-        answer2Element.textContent = '{{answer2}}'; 
+        answer2Element.textContent = '{{answer2}}';
         answer3Element.textContent = '{{answer3}}';
-        answer4Element.textContent = '{{answer4}}'; 
-        answer5Element.textContent = '{{answer5}}'; 
-        answer6Element.textContent = '{{answer6}}'; 
-        groupElement.textContent = '{{group}}'; 
+        answer4Element.textContent = '{{answer4}}';
+        answer5Element.textContent = '{{answer5}}';
+        answer6Element.textContent = '{{answer6}}';
+        groupElement.textContent = '{{group}}';
+
+        const submitButton = document.getElementById("submitButton");
+        submitButton.addEventListener("click", function() {
+            alert("Button clicked!");
+        });
     </script>
 </body>
 </html>
