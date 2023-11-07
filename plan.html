@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="plan.css">
+    <title>Your Plan</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Plan</h1>
+        <p>Here's your customized plan based on your group:</p>
+        <ul id="plan-list">
+            
+        </ul>
+    </div>
+
+    <script>
+        const planList = document.getElementById("plan-list");
+        const userGroup = parseInt(new URLSearchParams(window.location.search).get("userGroup"));
+
+    
+        function generatePlan() {
+            const plans = [
+                
+                ['Plan item 1 for Group 1', 'Plan item 2 for Group 1', 'Plan item 3 for Group 1'],
+                ['Plan item 1 for Group 2', 'Plan item 2 for Group 2', 'Plan item 3 for Group 2'],
+                ['Plan item 1 for Group 3', 'Plan item 2 for Group 3', 'Plan item 3 for Group 3'],
+                ['Plan item 1 for Group 4', 'Plan item 2 for Group 4', 'Plan item 3 for Group 4'],
+            ];
+    
+            if (userGroup >= 1 && userGroup <= 4) {
+                const userPlan = plans[userGroup - 1];
+    
+                userPlan.forEach((item, index) => {
+                    const li = document.createElement("li");
+                    li.textContent = `Plan item ${index + 1}: ${item}`;
+                    planList.appendChild(li);
+                });
+            } else {
+                console.error('Invalid user group.');
+            }
+        }
+    
+        generatePlan();
+    </script>
+</body>
+</html>

@@ -3,32 +3,10 @@
 <head>
     <link rel="stylesheet" type="text/css" href="response.css">
     <title>Submission Result</title>
-    <style>
-        
-        .button-container {
-            text-align: center;
-        }
-
-        /* Style the button */
-        #submitButton {
-            background-color: #007BFF; 
-            color: #ffffff; 
-            padding: 10px 20px;
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-size: 16px; 
-        }
-
-        /* Hover effect on the button */
-        #submitButton:hover {
-            background-color: #0056b3; 
-        }
-    </style>
 </head>
 <body>
     <h1>Submission Result</h1>
-    <p>YOUR ANSWERS HAVE BEEN SAVED TO THE SERVER!</p>
+    <p>YOUR ANSWERS HAVE BEEN SAVED AND YOUR ANALYSIS IS NOW LOADING...</p>
     <ul>
         <li>What is your name?: <span id="answer1"></span></li>
         <li>How old are you?: <span id="answer2"></span></li>
@@ -60,7 +38,10 @@
 
         const submitButton = document.getElementById("submitButton");
         submitButton.addEventListener("click", function() {
-            alert("Button clicked!");
+            // get the group value from the span element
+            const groupValue = groupElement.textContent;
+            // navigate to the plan.html page with the userGroup query parameter
+            window.location.href = `plan.html?userGroup=${encodeURIComponent(groupValue)}`;
         });
     </script>
 </body>
