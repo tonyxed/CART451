@@ -24,6 +24,7 @@ app.post('/submit', (req, res) => {
     const answer6 = req.body.question6;
 
    
+    //stores the answers based on the questions
     const answers = {
         question1: answer1,
         question2: answer2,
@@ -83,3 +84,4 @@ app.listen(port, () => {
 //https://stackoverflow.com/questions/70407169/saving-user-input-in-json-file
 //https://stackoverflow.com/questions/72574889/how-do-i-save-the-inputs-of-an-html-form-into-a-json-file-with-javascript
 
+//everything is done by me
