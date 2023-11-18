@@ -1,0 +1,23 @@
+{
+    "group1": [
+      "Custom Plan Item 1 for Group 1",
+      "Custom Plan Item 2 for Group 1",
+      "Custom Plan Item 3 for Group 1"
+    ],
+    "group2": [
+      "Custom Plan Item 1 for Group 2",
+      "Custom Plan Item 2 for Group 2",
+      "Custom Plan Item 3 for Group 2"
+    ],
+    "group3": [
+      "Custom Plan Item 1 for Group 3",
+      "Custom Plan Item 2 for Group 3",
+      "Custom Plan Item 3 for Group 3"
+    ],
+    "group4": [
+      "Custom Plan Item 1 for Group 4",
+      "Custom Plan Item 2 for Group 4",
+      "Custom Plan Item 3 for Group 4"
+    ]
+  }
+  

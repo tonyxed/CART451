@@ -8,39 +8,36 @@
     <div class="container">
         <h1>Your Plan</h1>
         <p>Here's your customized plan based on your group:</p>
-        <ul id="plan-list">
-            
-        </ul>
+        <ul id="plan-list"></ul>
     </div>
 
     <script>
         const planList = document.getElementById("plan-list");
-        const userGroup = parseInt(new URLSearchParams(window.location.search).get("userGroup"));
+        const userGroup = new URLSearchParams(window.location.search).get("userGroup");
 
-    
         function generatePlan() {
-            const plans = [
-                
-                ['Plan item 1 for Group 1', 'Plan item 2 for Group 1', 'Plan item 3 for Group 1'],
-                ['Plan item 1 for Group 2', 'Plan item 2 for Group 2', 'Plan item 3 for Group 2'],
-                ['Plan item 1 for Group 3', 'Plan item 2 for Group 3', 'Plan item 3 for Group 3'],
-                ['Plan item 1 for Group 4', 'Plan item 2 for Group 4', 'Plan item 3 for Group 4'],
-            ];
-    
-            // if user's group's fall between the ranges give them a specified plan according to their group
-            if (userGroup >= 1 && userGroup <= 4) {
-                const userPlan = plans[userGroup - 1];
-    
-                userPlan.forEach((item, index) => {
-                    const li = document.createElement("li");
-                    li.textContent = `Plan item ${index + 1}: ${item}`;
-                    planList.appendChild(li);
+            // Fetch the custom plan based on the user's group
+            fetch('/custom_plan.json')
+                .then(response => response.json())
+                .then(plans => {
+                    // Check if user's group exists in the plans object
+                    if (plans.hasOwnProperty(`group${userGroup}`)) {
+                        const userPlan = plans[`group${userGroup}`];
+
+                        userPlan.forEach((item, index) => {
+                            const li = document.createElement("li");
+                            li.textContent = `Plan item ${index + 1}: ${item}`;
+                            planList.appendChild(li);
+                        });
+                    } else {
+                        console.error('Invalid user group.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching custom plan:', error);
                 });
-            } else {
-                console.error('Invalid user group.');
-            }
         }
-    
+
         generatePlan();
     </script>
 </body>
