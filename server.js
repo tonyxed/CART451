@@ -36,15 +36,16 @@ app.post('/submit', (req, res) => {
         question7: answer7,
     };
 
-    if (answer4 > 150 && answer5 === 'yes') {
-        answers.group = 1; 
-    } else if (answer4 <= 150 && answer5 === 'yes') {
-        answers.group = 2; 
-    } else if (answer4 > 150 && answer5 === 'no') {
-        answers.group = 3; 
-    } else {
-        answers.group = 4; 
-    }
+  // Determine the group based on the given conditions
+  if (answer7.toLowerCase() === 'lose weight') {
+    answers.group = 1;
+} else if (answer7.toLowerCase() === 'maintain weight') {
+    answers.group = 2;
+} else if (answer7.toLowerCase() === 'gain weight') {
+    answers.group = 3;
+} else {
+    answers.group = 4;
+}
 
     const answersJSON = JSON.stringify(answers, null, 2);
 
