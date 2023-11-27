@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="main.css">
@@ -19,24 +19,33 @@
             <label for="question2">How old are you?:</label>
             <input type="text" id="question2" name="question2"><br><br>
 
-            <label for="question3">Are you an active person?:</label>
-            <input type="text" id="question3" name="question3"><br><br>
+            <label for="question3">Are you an active person?</label>
+            <input type="radio" id="activeYes" name="question3" value="Yes">
+            <label for="activeYes">Yes</label>
+            <input type="radio" id="activeNo" name="question3" value="No">
+            <label for="activeNo">No</label><br><br>
 
-            <label for="question4">Would you consider yourself to be fairly disciplined?:</label>
-            <input type="text" id="question4" name="question4"><br><br>
+            <label for="question4">Would you consider yourself to be fairly disciplined?</label>
+            <input type="radio" id="disciplinedYes" name="question4" value="Yes">
+            <label for="disciplinedYes">Yes</label>
+            <input type="radio" id="disciplinedNo" name="question4" value="No">
+            <label for="disciplinedNo">No</label><br><br>
 
             <label for="question5">Enter your weight (not required):</label>
             <input type="text" id="question5" name="question5"><br><br>
 
-            <label for="question6">Do you currently do any form of exercise?:</label>
-            <input type="text" id="question6" name="question6"><br><br>
+            <label for="question6">Do you currently do any form of exercise?</label>
+            <input type="radio" id="exerciseYes" name="question6" value="Yes">
+            <label for="exerciseYes">Yes</label>
+            <input type="radio" id="exerciseNo" name="question6" value="No">
+            <label for="exerciseNo">No</label><br><br>
 
             <label for="question7">What is your fitness goal?</label>
-<select id="question7" name="question7">
-    <option value="Lose weight">Lose weight</option>
-    <option value="Gain weight">Gain weight</option>
-    <option value="Maintain weight">Maintain weight</option>
-</select><br><br>
+            <select id="question7" name="question7">
+                <option value="Lose weight">Lose weight</option>
+                <option value="Gain weight">Gain weight</option>
+                <option value="Maintain weight">Maintain weight</option>
+            </select><br><br>
 
             <button type="submit">Submit</button>
         </form>

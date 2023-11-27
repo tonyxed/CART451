@@ -6,13 +6,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Your Plan</h1>
-        <p>Here's your customized plan based on your group:</p>
+        <h1>Your Custom Plan</h1>
+        <p>Here's your customized plan based on your group!</p>
+        <p id="group-message"></p>
+        <p id="edit-instructions">Click on a day to edit based on what you desire.</p>
         <ul id="plan-list"></ul>
     </div>
 
     <script>
         const planList = document.getElementById("plan-list");
+        const groupMessage = document.getElementById("group-message");
+        const editInstructions = document.getElementById("edit-instructions");
         const userGroup = new URLSearchParams(window.location.search).get("userGroup");
 
         function generatePlan() {
@@ -26,16 +30,32 @@
 
                         userPlan.forEach((item, index) => {
                             const li = document.createElement("li");
-                            li.textContent = `Plan item ${index + 1}: ${item}`;
+                            li.textContent = `Day ${index + 1}: ${item}`;
+                            li.addEventListener("click", () => editDay(index + 1));
                             planList.appendChild(li);
                         });
+
+                        // Display a message based on the user's group
+                        groupMessage.textContent = (userGroup === '1') ? 'This plan is designed to help you lose weight.' : '';
                     } else {
                         console.error('Invalid user group.');
+                        groupMessage.textContent = 'Invalid user group.';
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching custom plan:', error);
+                    groupMessage.textContent = 'Error fetching custom plan.';
                 });
+        }
+
+        function editDay(day) {
+            // Implement your logic to edit the selected day
+            const newDayName = prompt(`Edit Day ${day}:`, `New Plan for Day ${day}`);
+            if (newDayName !== null) {
+                // Update the plan item in the UI
+                const listItem = document.querySelector(`#plan-list li:nth-child(${day})`);
+                listItem.textContent = `Day ${day}: ${newDayName}`;
+            }
         }
 
         generatePlan();
