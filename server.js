@@ -22,6 +22,7 @@ app.post('/submit', (req, res) => {
     const answer4 = req.body.question4;
     const answer5 = req.body.question5;
     const answer6 = req.body.question6;
+    const answer7 = req.body.question7;
 
    
     //stores the answers based on the questions
@@ -32,6 +33,7 @@ app.post('/submit', (req, res) => {
         question4: answer4,
         question5: answer5,
         question6: answer6,
+        question7: answer7,
     };
 
     if (answer4 > 150 && answer5 === 'yes') {
@@ -67,7 +69,9 @@ app.post('/submit', (req, res) => {
             .replace('{{answer4}}', answers.question4)
             .replace('{{answer5}}', answers.question5)
             .replace('{{answer6}}', answers.question6)
+            .replace('{{answer7}}', answers.question7)
             .replace('{{group}}', answers.group);
+            
 
         res.send(renderedHtml);
 

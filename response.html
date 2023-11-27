@@ -15,6 +15,7 @@
         <li>Enter your weight(not required): <span id="answer5"></span></li>
         <li>Do you currently do any form of exercise?: <span id="answer6"></span></li>
         <li>You have been placed in group: <span id="group"></span></li>
+        <li>Your fitness goal: <span id="answer7"></span></li>
     </ul>
     <div class="button-container">
         <button id="submitButton">Find out what's next for me!</button>
@@ -27,6 +28,8 @@
         const answer5Element = document.getElementById("answer5");
         const answer6Element = document.getElementById("answer6");
         const groupElement = document.getElementById("group");
+        const answer7Element = document.getElementById("answer7");
+
 
         answer1Element.textContent = '{{answer1}}';
         answer2Element.textContent = '{{answer2}}';
@@ -35,6 +38,7 @@
         answer5Element.textContent = '{{answer5}}';
         answer6Element.textContent = '{{answer6}}';
         groupElement.textContent = '{{group}}';
+        answer7Element.textContent = '{{answer7}}';
 
         const submitButton = document.getElementById("submitButton");
         submitButton.addEventListener("click", function() {
