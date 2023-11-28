@@ -90,3 +90,5 @@ app.listen(port, () => {
 //https://stackoverflow.com/questions/72574889/how-do-i-save-the-inputs-of-an-html-form-into-a-json-file-with-javascript
 
 //everything is done by me
+//add plan for 2 opther groups
+//add option to save plan and or print plan to computer

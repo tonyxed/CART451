@@ -20,11 +20,11 @@
         const userGroup = new URLSearchParams(window.location.search).get("userGroup");
 
         function generatePlan() {
-            // Fetch the custom plan based on the user's group
+            // fetch's the custom plan based on the user's group
             fetch('/custom_plan.json')
                 .then(response => response.json())
                 .then(plans => {
-                    // Check if user's group exists in the plans object
+                    // check if user's group exists in the plans object
                     if (plans.hasOwnProperty(`group${userGroup}`)) {
                         const userPlan = plans[`group${userGroup}`];
 
@@ -35,8 +35,8 @@
                             planList.appendChild(li);
                         });
 
-                        // Display a message based on the user's group
-                        groupMessage.textContent = (userGroup === '1') ? 'This plan is designed to help you lose weight.' : '';
+                        // display's a message based on the user's group
+                        groupMessage.textContent = (userGroup === '1') ? 'This plan was designed based on your answers.' : '';
                     } else {
                         console.error('Invalid user group.');
                         groupMessage.textContent = 'Invalid user group.';
@@ -49,10 +49,9 @@
         }
 
         function editDay(day) {
-            // Implement your logic to edit the selected day
             const newDayName = prompt(`Edit Day ${day}:`, `New Plan for Day ${day}`);
             if (newDayName !== null) {
-                // Update the plan item in the UI
+                // ipdate's the plan item in the UI
                 const listItem = document.querySelector(`#plan-list li:nth-child(${day})`);
                 listItem.textContent = `Day ${day}: ${newDayName}`;
             }
