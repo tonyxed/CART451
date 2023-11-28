@@ -52,3 +52,11 @@ li {
 li:hover {
     background-color: #ddd;
 }
+
+#progress-tracker{
+    text-align: center;
+}
+
+#progress-history{
+    text-align: center;
+}

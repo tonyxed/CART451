@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="plan.css">
     <title>Your Plan</title>
 </head>
 <body>
     <div class="container">
         <h1>Your Custom Plan</h1>
+        <p id="progress-message"></p>
         <p>Here's your customized plan based on your group!</p>
         <p id="group-message"></p>
         <p id="edit-instructions">Click on a day to edit based on what you desire.</p>
         <ul id="plan-list"></ul>
+        <div id="progress-tracker">
+            <label for="progress-week">Track Your Progress: </label>
+            <input type="number" id="progress-week" min="1" max="52" value="1">
+            <input type="text" id="progress-input" placeholder="Enter your progress">
+            <button onclick="updateProgress()">Update Progress</button>
+        </div>
+        <div id="progress-history">
+            <h2>Progress History</h2>
+            <ul id="history-list"></ul>
+        </div>
     </div>
 
     <script>
         const planList = document.getElementById("plan-list");
         const groupMessage = document.getElementById("group-message");
+        const progressMessage = document.getElementById("progress-message");
         const editInstructions = document.getElementById("edit-instructions");
+        const progressInput = document.getElementById("progress-week");
+        const userInput = document.getElementById("progress-input");
+        const historyList = document.getElementById("history-list");
         const userGroup = new URLSearchParams(window.location.search).get("userGroup");
+        const progressData = {}; // store progress data for each week
 
         function generatePlan() {
-            // fetch's the custom plan based on the user's group
+            // fetch the custom plan based on the user's group
             fetch('/custom_plan.json')
                 .then(response => response.json())
                 .then(plans => {
-                    // check if user's group exists in the plans object
+                    // Check if user's group exists in the plans object
                     if (plans.hasOwnProperty(`group${userGroup}`)) {
                         const userPlan = plans[`group${userGroup}`];
 
@@ -35,8 +53,22 @@
                             planList.appendChild(li);
                         });
 
-                        // display's a message based on the user's group
-                        groupMessage.textContent = (userGroup === '1') ? 'This plan was designed based on your answers.' : '';
+                        // display a message based on the user's group
+                        groupMessage.textContent = (userGroup === '1') ? 'You have been placed in group 1.' : '';
+                        groupMessage.textContent = (userGroup === '2') ? 'You have been placed in group 2.' : '';
+                        groupMessage.textContent = (userGroup === '3') ? 'You have been placed in group 3.' : '';
+
+                        
+                        if (userGroup === '1') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '2') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '3') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        }
                     } else {
                         console.error('Invalid user group.');
                         groupMessage.textContent = 'Invalid user group.';
@@ -48,12 +80,38 @@
                 });
         }
 
+        function updateProgress() {
+            const currentWeek = progressInput.value;
+            const progressValue = userInput.value;
+
+            // validate the input
+            if (currentWeek >= 1 && currentWeek <= 24) {
+                if (!progressData[currentWeek]) {
+                    progressData[currentWeek] = [];
+                }
+
+                progressData[currentWeek].push(progressValue);
+                displayProgressHistory();
+            } else {
+                alert('Please enter a valid week (1-24).');
+            }
+        }
+
+        function displayProgressHistory() {
+            historyList.innerHTML = "";
+            for (const week in progressData) {
+                const li = document.createElement("li");
+                li.textContent = `Week ${week}: ${progressData[week].join(', ')}`;
+                historyList.appendChild(li);
+            }
+        }
+
         function editDay(day) {
-            const newDayName = prompt(`Edit Day ${day}:`, `New Plan for Day ${day}`);
+            const newDayName = prompt(`Edit Item ${day}:`, `New Plan Item ${day}`);
             if (newDayName !== null) {
-                // ipdate's the plan item in the UI
+                // update the plan item in the UI
                 const listItem = document.querySelector(`#plan-list li:nth-child(${day})`);
-                listItem.textContent = `Day ${day}: ${newDayName}`;
+                listItem.textContent = newDayName;
             }
         }
 
