@@ -17,12 +17,16 @@
         <div id="progress-tracker">
             <label for="progress-week">Track Your Progress: </label>
             <input type="number" id="progress-week" min="1" max="52" value="1">
-            <input type="text" id="progress-input" placeholder="Enter your progress">
+            <input type="text" id="progress-input" placeholder="Enter your weight">
             <button onclick="updateProgress()">Update Progress</button>
         </div>
         <div id="progress-history">
             <h2>Progress History</h2>
             <ul id="history-list"></ul>
+            <div id="average-container">
+                <h2>7-Day Weight Change Average</h2>
+                <p id="average-message"></p>
+            </div>
         </div>
     </div>
 
@@ -34,6 +38,7 @@
         const progressInput = document.getElementById("progress-week");
         const userInput = document.getElementById("progress-input");
         const historyList = document.getElementById("history-list");
+        const averageMessage = document.getElementById("average-message");
         const userGroup = new URLSearchParams(window.location.search).get("userGroup");
         const progressData = {}; // store progress data for each week
 
@@ -58,7 +63,6 @@
                         groupMessage.textContent = (userGroup === '2') ? 'You have been placed in group 2.' : '';
                         groupMessage.textContent = (userGroup === '3') ? 'You have been placed in group 3.' : '';
 
-                        
                         if (userGroup === '1') {
                             document.getElementById("progress-tracker").style.display = "block";
                             updateProgress(); // initialize progress message
@@ -82,18 +86,17 @@
 
         function updateProgress() {
             const currentWeek = progressInput.value;
-            const progressValue = userInput.value;
+            const progressValue = parseFloat(userInput.value);
 
             // validate the input
-            if (currentWeek >= 1 && currentWeek <= 24) {
+            if (currentWeek >= 1 && currentWeek <= 52 && !isNaN(progressValue) && progressValue >= 0) {
                 if (!progressData[currentWeek]) {
                     progressData[currentWeek] = [];
                 }
 
                 progressData[currentWeek].push(progressValue);
                 displayProgressHistory();
-            } else {
-                alert('Please enter a valid week (1-24).');
+                calculateAverage();
             }
         }
 
@@ -101,8 +104,24 @@
             historyList.innerHTML = "";
             for (const week in progressData) {
                 const li = document.createElement("li");
-                li.textContent = `Week ${week}: ${progressData[week].join(', ')}`;
+                li.textContent = `Week ${week}: ${progressData[week].join(', ')} lbs`;
                 historyList.appendChild(li);
+            }
+        }
+
+        function calculateAverage() {
+            const currentWeek = progressInput.value;
+            const weeksToConsider = 7; 
+            if (currentWeek >= weeksToConsider) {
+                const weeksArray = Array.from({ length: weeksToConsider }, (_, i) => parseInt(currentWeek) - i);
+                const totalWeightChange = weeksArray.reduce((acc, week) => {
+                    return acc + (progressData[week] ? progressData[week].reduce((a, b) => a + b, 0) : 0);
+                }, 0);
+
+                const averageChange = totalWeightChange / weeksToConsider;
+                averageMessage.textContent = `Your 7-day weight change average: ${averageChange.toFixed(2)} lbs`;
+            } else {
+                averageMessage.textContent = "Not enough data for the 7-day average. Track more weeks.";
             }
         }
 
