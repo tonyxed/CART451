@@ -24,7 +24,6 @@ app.post('/submit', (req, res) => {
     const answer6 = req.body.question6;
     const answer7 = req.body.question7;
 
-    // stores the answers based on the questions
     const answers = {
         question1: answer1,
         question2: answer2,
@@ -35,16 +34,31 @@ app.post('/submit', (req, res) => {
         question7: answer7,
     };
 
-    // Determine the group based on the given conditions
-    if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes') {
-        answers.group = 1;
-    } else if (answer7.toLowerCase() === 'maintain weight') {
-        answers.group = 2;
-    } else if (answer7.toLowerCase() === 'gain weight') {
-        answers.group = 3;
-    } else {
-        answers.group = 4;
-    }
+    // determine the group based on the given conditions
+if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' && answer4.toLowerCase() === 'yes') {
+    answers.group = 1;
+} else if (answer7.toLowerCase() === 'maintain weight') {
+    answers.group = 2;
+} else if (answer7.toLowerCase() === 'gain weight') {
+    answers.group = 3;
+} else if (answer2 >= 18 && answer2 <= 30 && answer3.toLowerCase() === 'yes') {
+    answers.group = 4; 
+} else if (answer5 === '' && answer6.toLowerCase() === 'no') {
+    answers.group = 5; 
+} else if (answer1.toLowerCase() === "lose weight" && answer5.toLowerCase === "no") {
+    answers.group = 6; 
+} else if (answer4.toLowerCase() === 'no' && answer6.toLowerCase() === 'yes') {
+    answers.group = 7; 
+} else if (answer2 > 30 && answer7.toLowerCase() === 'gain weight') {
+    answers.group = 8; 
+} else if (answer3.toLowerCase() === 'no' && answer4.toLowerCase() === 'no' && answer6.toLowerCase() === 'no') {
+    answers.group = 9; 
+} else if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' && answer4.toLowerCase() === 'no') {
+    answers.group = 10;
+} else {
+    answers.group = 0; 
+}
+
 
     const answersJSON = JSON.stringify(answers, null, 2);
 
@@ -57,11 +71,9 @@ app.post('/submit', (req, res) => {
         fs.mkdirSync(directoryPath);
     }
 
-    // Save the answers to a JSON file
     try {
         fs.writeFileSync(filePath, answersJSON);
 
-        // render the "response.html" template with user answers
         const renderedHtml = template
             .replace('{{answer1}}', answers.question1)
             .replace('{{answer2}}', answers.question2)
