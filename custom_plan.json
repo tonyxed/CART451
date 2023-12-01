@@ -1,31 +1,90 @@
 {
-    "group1": [
-    "30 minutes of brisk walking or jogging",
-    "Full-body strength training (e.g., bodyweight exercises, light dumbbells)",
-    "20 minutes of high-intensity interval training (HIIT)",
-    "Rest or light activity (e.g., yoga or stretching)",
-    "45 minutes of moderate-intensity cardio (e.g., cycling or swimming)",
-    "Full-body strength training (increase intensity)",
-    "Rest day or light activity"
-    ],
-    "group2": [
-    "Maintain a balanced diet with a mix of proteins, carbohydrates, and healthy fats.",
-    "Engage in moderate-intensity aerobic exercise for at least 150 minutes per week.",
-    "Include strength training exercises at least two days a week to maintain muscle mass."
-    ],
-    "group3": [
-    "Full-Body Strength Training",
-    "Rest",
-    "High-Calorie Meals with Protein",
-    "Rest",
-    "Strength Training - Focus on Compound Exercises",
-    "High-Calorie Snacks",
-    "Rest"
-    ],
-    "group4": [
-      "Custom Plan Item 1 for Group 4",
-      "Custom Plan Item 2 for Group 4",
-      "Custom Plan Item 3 for Group 4"
-    ]
-  }
+    " group1": [
+      "30 minutes of brisk walking or jogging",
+      "Full-body strength training (e.g., bodyweight exercises, light dumbbells)",
+      "20 minutes of high-intensity interval training (HIIT)",
+      "Rest or light activity (e.g., yoga or stretching)",
+      "45 minutes of moderate-intensity cardio (e.g., cycling or swimming)",
+      "Full-body strength training (increase intensity)",
+      "Rest day or light activity"
+      ],
+      "group2": [
+      "Maintain a balanced diet with a mix of proteins, carbohydrates, and healthy fats.",
+      "Engage in moderate-intensity aerobic exercise for at least 150 minutes per week.",
+     "Include strength training exercises at least two days a week to maintain muscle mass."
+      ],
+      "group3": [
+      "Full-Body Strength Training",
+      "Rest",
+      "High-Calorie Meals with Protein",
+      "Rest",
+      "Strength Training - Focus on Compound Exercises",
+     "High-Calorie Snacks",
+      "Rest"
+      ],
+      "group4": [
+        "Monday: 30 minutes of circuit training",
+        "Tuesday: Core strength exercises and yoga",
+        "Wednesday: High-intensity interval training (HIIT)",
+        "Thursday: Rest day with light stretching",
+        "Friday: Full-body strength training with resistance bands",
+        "Saturday: 20 minutes of cardio kickboxing",
+        "Sunday: Rest day"
+      ],
+      "group5": [
+        "Monday: 40 minutes of powerlifting and heavy weights",
+        "Tuesday: Active recovery day with light jogging",
+        "Wednesday: 25 minutes of agility drills",
+        "Thursday: Yoga for flexibility and balance",
+        "Friday: Upper body strength training with barbells",
+        "Saturday: 30 minutes of trail running",
+        "Sunday: Rest day"
+      ],
+      "group6": [
+        "Monday: 20 minutes of dynamic stretching",
+        "Tuesday: Functional fitness workout",
+        "Wednesday: 15 minutes of plyometric exercises",
+        "Thursday: Rest day with meditation",
+        "Friday: Lower body strength training with kettlebells",
+        "Saturday: 35 minutes of cycling",
+        "Sunday: Rest day"
+      ],
+      "group7": [
+        "Monday: 30 minutes of mixed martial arts (MMA) training",
+        "Tuesday: High-intensity pyramid workout",
+        "Wednesday: 20 minutes of rowing",
+        "Thursday: Active recovery day with light yoga",
+        "Friday: Core strength exercises and stability training",
+        "Saturday: 25 minutes of cross-country skiing",
+        "Sunday: Rest day"
+      ],
+      "group8": [
+        "Monday: 45 minutes of barre exercises",
+        "Tuesday: Cardio dance workout",
+        "Wednesday: 30 minutes of Pilates",
+        "Thursday: Rest day with mindfulness meditation",
+        "Friday: Full-body strength training with stability ball",
+        "Saturday: 20 minutes of interval sprints",
+        "Sunday: Rest day"
+      ],
+      "group9": [
+        "Monday: 20 minutes of handstand and balance training",
+        "Tuesday: 40 minutes of calisthenics",
+        "Wednesday: 15 minutes of parkour-inspired movements",
+        "Thursday: Rest day with deep stretching",
+        "Friday: Upper body strength training with gymnastic rings",
+        "Saturday: 30 minutes of rock climbing",
+        "Sunday: Rest day"
+      ],
+      "group10": [
+        "Monday: 30 minutes of kickboxing and martial arts",
+        "Tuesday: 20 minutes of agility ladder drills",
+        "Wednesday: Full-body strength training with battle ropes",
+        "Thursday: Rest day with relaxation techniques",
+        "Friday: 25 minutes of cycling",
+        "Saturday: Functional fitness circuit",
+        "Sunday: Rest day"
+      ]
+    }
+    
   

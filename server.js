@@ -24,8 +24,7 @@ app.post('/submit', (req, res) => {
     const answer6 = req.body.question6;
     const answer7 = req.body.question7;
 
-   
-    //stores the answers based on the questions
+    // stores the answers based on the questions
     const answers = {
         question1: answer1,
         question2: answer2,
@@ -36,22 +35,22 @@ app.post('/submit', (req, res) => {
         question7: answer7,
     };
 
-  // Determine the group based on the given conditions
-  if (answer7.toLowerCase() === 'lose weight') {
-    answers.group = 1;
-} else if (answer7.toLowerCase() === 'maintain weight') {
-    answers.group = 2;
-} else if (answer7.toLowerCase() === 'gain weight') {
-    answers.group = 3;
-} else {
-    answers.group = 4;
-}
+    // Determine the group based on the given conditions
+    if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes') {
+        answers.group = 1;
+    } else if (answer7.toLowerCase() === 'maintain weight') {
+        answers.group = 2;
+    } else if (answer7.toLowerCase() === 'gain weight') {
+        answers.group = 3;
+    } else {
+        answers.group = 4;
+    }
 
     const answersJSON = JSON.stringify(answers, null, 2);
 
-    const directoryPath = path.join(__dirname, 'data'); 
-    const timestamp = Date.now(); 
-    const filename = `user_answers_${timestamp}.json`; 
+    const directoryPath = path.join(__dirname, 'data');
+    const timestamp = Date.now();
+    const filename = `user_answers_${timestamp}.json`;
     const filePath = path.join(directoryPath, filename);
 
     if (!fs.existsSync(directoryPath)) {
@@ -72,7 +71,6 @@ app.post('/submit', (req, res) => {
             .replace('{{answer6}}', answers.question6)
             .replace('{{answer7}}', answers.question7)
             .replace('{{group}}', answers.group);
-            
 
         res.send(renderedHtml);
 
@@ -85,10 +83,3 @@ app.post('/submit', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
-//https://stackoverflow.com/questions/70407169/saving-user-input-in-json-file
-//https://stackoverflow.com/questions/72574889/how-do-i-save-the-inputs-of-an-html-form-into-a-json-file-with-javascript
-
-//everything is done by me
-//add plan for 2 opther groups
-//add option to save plan and or print plan to computer
