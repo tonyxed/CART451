@@ -8,11 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Your Custom Plan</h1>
+        <h1 id="user-name-title">Your Custom Plan based on your Goals!</h1>
         <p id="progress-message"></p>
-        <p>Here's your customized plan based on your group!</p>
         <p id="group-message"></p>
-        <p id="edit-instructions">Click on a day to edit based on what you desire.</p>
+        <p id="edit-instructions">CLICK on a DAY to EDIT based on what you desire.</p>
         <ul id="plan-list"></ul>
         <div id="progress-tracker">
             <label for="progress-week">Track Your Progress: </label>
@@ -57,11 +56,18 @@
                             li.addEventListener("click", () => editDay(index + 1));
                             planList.appendChild(li);
                         });
-
+                        console.log('Debug - userGroup:', userGroup);
                         // display a message based on the user's group
                         groupMessage.textContent = (userGroup === '1') ? 'You have been placed in group 1.' : '';
                         groupMessage.textContent = (userGroup === '2') ? 'You have been placed in group 2.' : '';
                         groupMessage.textContent = (userGroup === '3') ? 'You have been placed in group 3.' : '';
+                        groupMessage.textContent = (userGroup === '4') ? 'You have been placed in group 4.' : '';
+                        groupMessage.textContent = (userGroup === '5') ? 'You have been placed in group 5.' : '';
+                        groupMessage.textContent = (userGroup === '6') ? 'You have been placed in group 6.' : '';
+                        groupMessage.textContent = (userGroup === '7') ? 'You have been placed in group 7.' : '';
+                        groupMessage.textContent = (userGroup === '8') ? 'You have been placed in group 8.' : '';
+                        groupMessage.textContent = (userGroup === '9') ? 'You have been placed in group 9.' : '';
+                        groupMessage.textContent = (userGroup === '10') ? 'You have been placed in group 10.' : '';
 
                         if (userGroup === '1') {
                             document.getElementById("progress-tracker").style.display = "block";
@@ -72,7 +78,28 @@
                         } else if (userGroup === '3') {
                             document.getElementById("progress-tracker").style.display = "block";
                             updateProgress(); // initialize progress message
-                        }
+                        } else if (userGroup === '4') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '5') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '6') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '7') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '8') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '9') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '10') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } 
                     } else {
                         console.error('Invalid user group.');
                         groupMessage.textContent = 'Invalid user group.';

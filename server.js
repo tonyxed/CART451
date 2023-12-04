@@ -35,18 +35,18 @@ app.post('/submit', (req, res) => {
     };
 
     // determine the group based on the given conditions
-if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' && answer4.toLowerCase() === 'yes') {
-    answers.group = 1;
-} else if (answer7.toLowerCase() === 'maintain weight' && answer5.toLowerCase() === "no" && answer3.toLowerCase() === 'no') {
+if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' && answer4.toLowerCase() === 'no') {
+    answers.group = 1;  
+} else if (answer7.toLowerCase() === 'maintain weight' && answer6.toLowerCase() === "no" && answer3.toLowerCase() === 'no') {
     answers.group = 2;
-} else if (answer7.toLowerCase() === 'gain weight' && answer6.toLowerCase === "yes" && answer3.toLowerCase() === 'yes') {
+} else if (answer7.toLowerCase() === 'gain weight' && answer6.toLowerCase() === "yes" && answer3.toLowerCase() === 'yes') {
     answers.group = 3;
 } else if (answer2 >= 18 && answer3.toLowerCase() === 'yes') {
     answers.group = 4; 
 } else if (answer4.toLowerCase() === 'yes' && answer6.toLowerCase() === 'no') {
     answers.group = 5; 
-} else if (answer1.toLowerCase() === "lose weight" && answer6.toLowerCase === "no" && answer3.toLowerCase() === 'yes' && answer4.toLowerCase() === 'yes') {
-    answers.group = 6; 
+} else if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === "no" && answer3.toLowerCase() === 'yes' && answer4.toLowerCase() === 'yes') {
+    answers.group = 6;
 } else if (answer4.toLowerCase() === 'no' && answer6.toLowerCase() === 'yes' && answer3.toLowerCase() === 'yes') {
     answers.group = 7; 
 } else if (answer2 > 30 && answer7.toLowerCase() === 'gain weight' && answer6.toLowerCase() === 'yes' && answer3.toLowerCase() === 'yes') {
@@ -56,7 +56,7 @@ if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' &
 } else if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' && answer4.toLowerCase() === 'no' && answer3.toLowerCase() === "no") {
     answers.group = 10;
 } else {
-    answers.group = 0; 
+    answers.group = 7 + Math.floor(Math.random() * 4);
 }
 
 
