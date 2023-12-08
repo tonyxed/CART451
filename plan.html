@@ -42,10 +42,12 @@
         const progressData = {}; // store progress data for each week
 
         function generatePlan() {
+
             // fetch the custom plan based on the user's group
             fetch('/custom_plan.json')
                 .then(response => response.json())
                 .then(plans => {
+
                     // Check if user's group exists in the plans object
                     if (plans.hasOwnProperty(`group${userGroup}`)) {
                         const userPlan = plans[`group${userGroup}`];
@@ -57,6 +59,7 @@
                             planList.appendChild(li);
                         });
                         console.log('Debug - userGroup:', userGroup);
+
                         // display a message based on the user's group
                         groupMessage.textContent = (userGroup === '1') ? 'You have been placed in group 1.' : '';
                         groupMessage.textContent = (userGroup === '2') ? 'You have been placed in group 2.' : '';
@@ -111,6 +114,7 @@
                 });
         }
 
+        //update progress
         function updateProgress() {
             const currentWeek = progressInput.value;
             const progressValue = parseFloat(userInput.value);
@@ -126,7 +130,7 @@
                 calculateAverage();
             }
         }
-
+        //display progress history
         function displayProgressHistory() {
             historyList.innerHTML = "";
             for (const week in progressData) {
@@ -136,6 +140,7 @@
             }
         }
 
+        //calculate and display the 7-day weight change average
         function calculateAverage() {
             const currentWeek = progressInput.value;
             const weeksToConsider = 7; 
@@ -152,6 +157,7 @@
             }
         }
 
+        //edit the days
         function editDay(day) {
             const newDayName = prompt(`Edit Item ${day}:`, `New Plan Item ${day}`);
             if (newDayName !== null) {

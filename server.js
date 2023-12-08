@@ -7,15 +7,20 @@ const path = require('path');
 const templatePath = path.join(__dirname, 'response.html');
 const template = fs.readFileSync(templatePath, 'utf8');
 
+//servers css files under /css
 app.use('/css', express.static(path.join(__dirname, 'css'), { 'extensions': ['css'] }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
+//GET request 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+//POST for form submission
 app.post('/submit', (req, res) => {
+    
+    //extract form data 
     const answer1 = req.body.question1;
     const answer2 = req.body.question2;
     const answer3 = req.body.question3;
@@ -24,6 +29,7 @@ app.post('/submit', (req, res) => {
     const answer6 = req.body.question6;
     const answer7 = req.body.question7;
 
+    //stores answers in an object
     const answers = {
         question1: answer1,
         question2: answer2,
@@ -59,9 +65,10 @@ if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' &
     answers.group = 7 + Math.floor(Math.random() * 4);
 }
 
-
+    // convert answers to JSON format
     const answersJSON = JSON.stringify(answers, null, 2);
 
+    //create a directory to store user data
     const directoryPath = path.join(__dirname, 'data');
     const timestamp = Date.now();
     const filename = `user_answers_${timestamp}.json`;
@@ -72,8 +79,10 @@ if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' &
     }
 
     try {
+        // save user answers to a JSON file
         fs.writeFileSync(filePath, answersJSON);
 
+        // replace HTML template with user answers
         const renderedHtml = template
             .replace('{{answer1}}', answers.question1)
             .replace('{{answer2}}', answers.question2)
@@ -84,14 +93,17 @@ if (answer7.toLowerCase() === 'lose weight' && answer6.toLowerCase() === 'yes' &
             .replace('{{answer7}}', answers.question7)
             .replace('{{group}}', answers.group);
 
+        //send HTML as response
         res.send(renderedHtml);
 
+    //handle errors
     } catch (error) {
         console.error('Error saving data:', error);
         res.status(500).send('Error saving data to user_answers.json.');
     }
 });
 
+//start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
